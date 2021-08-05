@@ -62,12 +62,14 @@ except Exception as e:
     print("Cannot connect to the bank database!!! Check value of the Environment Variable \"MONGODB_DATABASE\". This cannot be left blank.")
     sys.exit(0)
 
+'''
 try:
     test_url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/xyz/"+WSO2_API_VERSION
 except Exception as e:
     print(e)
     print("Check the values of WSO2 environment variables!!! They cannot be left blank. Neither will incorrect values work properly.")
     sys.exit(0)
+'''
 
 Edge_Accounts = Edge_BankDB['Edge_Accounts']
 Edge_Dormant_Accounts = Edge_BankDB['Edge_Dormant_Accounts']
