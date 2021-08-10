@@ -22,8 +22,11 @@ CORS(app)
 MONGODB_USER = "admin"
 MONGODB_PASSWORD = "admin"
 MONGODB_DATABASE = "Edge_BankDB"
-MONGODB_DOMAIN = "45a49dbf-us-east.lb.appdomain.cloud"
+MONGODB_DOMAIN = "edgedb.open-banking.svc"
 MONGODB_PORT = "27017"
+WSO2_DOMAIN = "158.176.180.100"
+WSO2_PORT = "8243"
+WSO2_API_VERSION = "1.0"
 
 # print(os.environ)
 #print('MONGODB_USER = '+str(os.environ.get('MONGODB_USER')))
@@ -39,6 +42,9 @@ print('MONGODB_PASSWORD = '+str(MONGODB_PASSWORD))
 print('MONGODB_DATABASE = '+str(MONGODB_DATABASE))
 print('MONGODB_DOMAIN = '+str(MONGODB_DOMAIN))
 print('MONGODB_PORT = '+str(MONGODB_PORT))
+print('WSO2_DOMAIN = '+str(WSO2_DOMAIN))
+print('WSO2_PORT = '+str(WSO2_PORT))
+print('WSO2_API_VERSION = '+str(WSO2_API_VERSION))
 
 try:
     if(MONGODB_USER == None or MONGODB_PASSWORD == None):
@@ -62,14 +68,12 @@ except Exception as e:
     print("Cannot connect to the bank database!!! Check value of the Environment Variable \"MONGODB_DATABASE\". This cannot be left blank.")
     sys.exit(0)
 
-'''
 try:
     test_url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/xyz/"+WSO2_API_VERSION
 except Exception as e:
     print(e)
     print("Check the values of WSO2 environment variables!!! They cannot be left blank. Neither will incorrect values work properly.")
     sys.exit(0)
-'''
 
 Edge_Accounts = Edge_BankDB['Edge_Accounts']
 Edge_Dormant_Accounts = Edge_BankDB['Edge_Dormant_Accounts']
@@ -329,7 +333,7 @@ def call_fetch_master_config_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_master_config/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_master_config/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_config_obj", headers=headers, verify=False)
 
@@ -368,7 +372,7 @@ def call_update_data_to_master_config_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_data_to_master_config/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_data_to_master_config/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/update_data_to_config_obj",headers=headers, json=body, verify=False)
 
@@ -408,7 +412,7 @@ def call_create_bank_account_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_bank_account/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_bank_account/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/create_bank_account", headers=headers, json=body, verify=False)
 
@@ -453,7 +457,7 @@ def call_fetch_account_form_details_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_account_form_details/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_account_form_details/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_account_form_details", headers=headers, json=body, verify=False)
 
@@ -480,7 +484,7 @@ def call_fetch_config_obj_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_config_obj/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_config_obj/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_config_obj", headers=headers, verify=False)
 
@@ -521,7 +525,7 @@ def call_update_data_to_config_obj_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_data_to_config_obj/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_data_to_config_obj/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/update_data_to_config_obj",headers=headers, json=body, verify=False)
 
@@ -585,9 +589,9 @@ def call_get_processed_indicator_count_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_processed_indicator_count/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_processed_indicator_count/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
-    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_processed_indicator_count", headers=headers, verify=False)
+    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_processed_indicator_count", headers=headers, json=body, verify=False)
 
     print(response.json)
     return response.json()
@@ -625,7 +629,7 @@ def call_create_dormant_account_request_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_dormant_account_request/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_dormant_account_request/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/create_dormant_account_request", headers=headers, json=body, verify=False)
 
@@ -670,7 +674,7 @@ def call_fetch_dormant_account_form_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_dormant_account_form/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_dormant_account_form/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_dormant_account_form", headers=headers, json=body, verify=False)
 
@@ -697,7 +701,7 @@ def call_fetch_dormant_config_obj_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_dormant_config_obj/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_dormant_config_obj/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_dormant_config_obj", headers=headers, verify=False)
 
@@ -738,7 +742,7 @@ def call_update_dormant_config_obj_data_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_dormant_config_obj_data/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_dormant_config_obj_data/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/update_dormant_config_obj_data",headers=headers, json=body, verify=False)
 
@@ -802,9 +806,9 @@ def call_get_dormant_processed_count_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_dormant_processed_count/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_dormant_processed_count/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
-    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_dormant_processed_count", headers=headers, verify=False)
+    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_dormant_processed_count", headers=headers, json=body, verify=False)
 
     print(response.json)
     return response.json()
@@ -842,7 +846,7 @@ def call_create_cheque_book_request_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_cheque_book_request/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_cheque_book_request/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/create_cheque_book_request", headers=headers, json=body, verify=False)
 
@@ -887,7 +891,7 @@ def call_fetch_cheque_book_form_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_cheque_book_form/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_cheque_book_form/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_cheque_book_form", headers=headers, json=body, verify=False)
 
@@ -914,7 +918,7 @@ def call_fetch_cheque_book_config_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_cheque_book_config/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_cheque_book_config/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_cheque_book_config", headers=headers, verify=False)
 
@@ -955,7 +959,7 @@ def call_update_cheque_book_config_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_cheque_book_config/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_cheque_book_config/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/update_cheque_book_config",headers=headers, json=body, verify=False)
 
@@ -1019,9 +1023,9 @@ def call_get_cheque_processed_count_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_cheque_processed_count/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_cheque_processed_count/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
-    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_cheque_processed_count", headers=headers, verify=False)
+    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_cheque_processed_count", headers=headers, json=body, verify=False)
 
     print(response.json)
     return response.json()
@@ -1059,7 +1063,7 @@ def call_create_credit_card_request_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_credit_card_request/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/create_credit_card_request/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/create_credit_card_request", headers=headers, json=body, verify=False)
 
@@ -1104,7 +1108,7 @@ def call_fetch_credit_card_form_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_credit_card_form/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_credit_card_form/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_credit_card_form", headers=headers, json=body, verify=False)
 
@@ -1131,7 +1135,7 @@ def call_fetch_credit_card_config_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_credit_card_config/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/fetch_credit_card_config/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/fetch_credit_card_config", headers=headers, verify=False)
 
@@ -1172,7 +1176,7 @@ def call_update_credit_card_config_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_credit_card_config/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/update_credit_card_config/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, json=body, verify=False)
     response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/update_credit_card_config",headers=headers, json=body, verify=False)
 
@@ -1236,9 +1240,9 @@ def call_get_credit_processed_count_api():
     print(type(headers))
     print(headers)
 
-    #url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_credit_processed_count/"+WSO2_API_VERSION
+    url = "https://"+WSO2_DOMAIN+":"+WSO2_PORT+"/get_credit_processed_count/"+WSO2_API_VERSION
     #response = requests.post(url, headers=headers, verify=False)
-    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_credit_processed_count", headers=headers, verify=False)
+    response = requests.post("http://edge-open-api-fs-cloud-app-test-open-banking.mgmt-pot01-cluster-1fa025a294811d2b43b68d6ffd4c8b58-i000.us-east.containers.appdomain.cloud/get_credit_processed_count", headers=headers, json=body, verify=False)
 
     print(response.json)
     return response.json()
