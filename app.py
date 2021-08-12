@@ -24,7 +24,7 @@ MONGODB_PASSWORD = "admin"
 MONGODB_DATABASE = "Edge_BankDB"
 MONGODB_DOMAIN = "edgedb.open-banking.svc"
 MONGODB_PORT = "27017"
-WSO2_DOMAIN = "158.176.180.100"
+WSO2_DOMAIN = "45a49dbf-us-east.lb.appdomain.cloud"
 WSO2_PORT = "8243"
 WSO2_API_VERSION = "1.0"
 
