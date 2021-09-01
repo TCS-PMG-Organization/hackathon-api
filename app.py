@@ -22,7 +22,8 @@ CORS(app)
 MONGODB_USER = "admin"
 MONGODB_PASSWORD = "admin"
 MONGODB_DATABASE = "Edge_BankDB"
-MONGODB_DOMAIN = "edgedb.open-banking.svc"
+#MONGODB_DOMAIN = "edgedb.open-banking.svc"
+MONGODB_DOMAIN = "edgedb.edge-open-banking-tcs.svc"
 MONGODB_PORT = "27017"
 WSO2_DOMAIN = "45a49dbf-us-east.lb.appdomain.cloud"
 WSO2_PORT = "8243"
@@ -86,6 +87,17 @@ Edge_Render_Context = Edge_BankDB['Edge_Render_Context']
 Edge_Account_Open_Form_Fields = Edge_BankDB['Edge_Account_Open_Form_Fields']
 Edge_Master_Config = Edge_BankDB['Edge_Master_Config']
 Edge_Login_OTP = Edge_BankDB['Edge_Login_OTP']
+Transactions = Edge_BankDB['Transactions']
+Fraud_Transactions = Edge_BankDB['Fraud_Transactions']
+
+#-HACKATHON CODE-#########################################################################################################################
+
+@app.route("/get_transactions")
+def get_transactions():
+    msg = ""
+    for j in Transactions.find({}):
+        msg = j
+    return (jsonify(msg))
 
 #-UTILITY FUNCTIONS AND API'S-#############################################################################################################
 def get_otp():
