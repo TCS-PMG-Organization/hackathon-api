@@ -7,6 +7,7 @@ from email.mime.text import MIMEText
 from datetime import date
 from dateutil.relativedelta import relativedelta
 import json, urllib3, requests, random, smtplib, os, sys
+from bson.json_util import dumps
 
 app = Flask(__name__)
 CORS(app)
