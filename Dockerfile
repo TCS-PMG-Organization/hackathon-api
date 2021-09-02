@@ -1,6 +1,8 @@
 FROM python:3.8-alpine
 
-RUN pip install flask pymongo flask-cors requests urllib3 python-dateutil bson
+RUN pip uninstall pymongo bson
+
+RUN pip install flask bson pymongo flask-cors requests urllib3 python-dateutil 
 
 COPY app.py /opt/app.py
 
