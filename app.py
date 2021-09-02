@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 from datetime import date
 from dateutil.relativedelta import relativedelta
 import json, urllib3, requests, random, smtplib, os, sys
-
+from bson.json_util import dumps
 
 app = Flask(__name__)
 CORS(app)
@@ -97,7 +97,7 @@ def get_transactions():
     msgtrans_cur = ""
     msgtrans_cur = Transactions.find()
     msgtrans = list(msgtrans_cur)
-    msgtrans_data = json.dumps(msgtrans)
+    msgtrans_data = dumps(msgtrans)
     return msgtrans_data
 
 @app.route("/get_fraud_transactions")
@@ -105,7 +105,7 @@ def get_fraud_transactions():
     msgfraudtrans_cur = ""
     msgfraudtrans_cur = Fraud_Transactions.find()
     msgfraudtrans = list(msgfraudtrans_cur)
-    msgfraudtrans_data = json.dumps(msgfraudtrans)
+    msgfraudtrans_data = dumps(msgfraudtrans)
     return msgfraudtrans_data
 
 #-UTILITY FUNCTIONS AND API'S-#############################################################################################################
