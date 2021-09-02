@@ -91,13 +91,21 @@ Transactions = Edge_BankDB['Transactions']
 Fraud_Transactions = Edge_BankDB['Fraud_Transactions']
 
 #-HACKATHON CODE-#########################################################################################################################
-
 @app.route("/get_transactions")
 def get_transactions():
-    msg = ""
-    for j in Transactions.find({}):
-        msg = j
-    return (jsonify(msg))
+    msgtrans_cur = ""
+    msgtrans_cur = Transactions.find()
+    msgtrans = list(msgtrans_cur)
+    msgtrans_data = json_util.dumps(msgtrans)
+    return msgtrans_data
+
+@app.route("/get_fraud_transactions")
+def get_fraud_transactions():
+    msgfraudtrans_cur = ""
+    msgfraudtrans_cur = Fraud_Transactions.find()
+    msgfraudtrans = list(msgfraudtrans_cur)
+    msgfraudtrans_data = json_util.dumps(msgfraudtrans)
+    return msgfraudtrans_data
 
 #-UTILITY FUNCTIONS AND API'S-#############################################################################################################
 def get_otp():
