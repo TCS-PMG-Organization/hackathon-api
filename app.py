@@ -12,7 +12,7 @@ from bson.json_util import dumps
 app = Flask(__name__)
 CORS(app)
 
-#MONGODB_USER = os.environ.get('MONGODB_USER')
+#MONGODB_USER = os.environ.get('MONGODB_USER') #
 #MONGODB_PASSWORD = os.environ.get('MONGODB_PASSWORD')
 #MONGODB_DATABASE = os.environ.get('MONGODB_DATABASE')
 #MONGODB_DOMAIN = os.environ.get('MONGODB_DOMAIN')
@@ -24,7 +24,7 @@ MONGODB_USER = "admin"
 MONGODB_PASSWORD = "admin"
 MONGODB_DATABASE = "Edge_BankDB"
 #MONGODB_DOMAIN = "edgedb.open-banking.svc"
-MONGODB_DOMAIN = "edgedb.edge-open-banking-tcs.svc"
+MONGODB_DOMAIN = "edgedb.tcspmg-finance1.svc"
 MONGODB_PORT = "27017"
 WSO2_DOMAIN = "45a49dbf-us-east.lb.appdomain.cloud"
 WSO2_PORT = "8243"
